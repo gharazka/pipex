@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gharazka <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/31 21:47:01 by gharazka          #+#    #+#             */
+/*   Updated: 2024/07/31 21:48:12 by gharazka         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "inc/pipex.h"
 
 void	open_files(t_program *program)
 {
 	program->infile_fd = open(program->infile_name, O_RDONLY);
-	program->outfile_fd = open(program->outfile_name, O_WRONLY | O_CREAT | O_TRUNC);
+	program->outfile_fd = open(program->outfile_name,
+			O_WRONLY | O_CREAT | O_TRUNC);
 	if (program->infile_fd == -1 || program->outfile_fd == -1)
 		perror("open failed");
-
 }
 
 t_program	init_struct(int argc, char *argv[], char *envp[])
