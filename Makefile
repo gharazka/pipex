@@ -9,7 +9,7 @@ OBJECTS = ${SOURCES:.c=.o}
 HEADERS = -I inc
 
 ARGS = "infile" "notexisting" "wc" "outfile.txt"
-CMD = < infile notexisting | wc > outfile.txt
+CMD = < infile notexisting | wc -l > outfile.txt
 
 all: $(LIB) $(NAME)
 
