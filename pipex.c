@@ -48,8 +48,14 @@ t_program	init_struct(int argc, char *argv[], char *envp[])
 
 void	execute_last(t_program program, char **envp, int i)
 {
-	if (execve(program.command_paths[i - 1], program.commands[i - 1], envp) == -1)
-		free_and_exit(program, "execve failed");
+	int	id;
+
+	id = fork();
+	if (id == -1)
+		error_and_exit("fork failed");
+	if (id == 0)
+		if (execve(program.command_paths[i - 1], program.commands[i - 1], envp) == -1)
+			free_and_exit(program, "execve failed");
 }
 
 void	execute(t_program program, char **envp, int i)
@@ -101,4 +107,3 @@ int	main(int argc, char *argv[], char *envp[])
 	free_split(program.commands[1], argc - 3);
 	free(program.commands);
 }
-

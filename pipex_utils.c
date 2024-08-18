@@ -71,7 +71,7 @@ char	**get_path(char *envp[])
 		i++;
 	}
 	if (!pathline)
-		error_and_exit("command not found");
+		perror("command not found");
 	path = ft_split(pathline, ':');
 	if (!path)
 		error_and_exit("malloc failed");
@@ -106,5 +106,5 @@ void	get_command_path(char **envp, int i, t_program *program, char *argv[])
 			free(program->command_paths[i - 2]);
 	}
 	free_split(path, 0);
-	free_and_exit(*program, "command not found");
+	perror("command not found");
 }
